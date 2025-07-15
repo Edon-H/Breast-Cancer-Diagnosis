@@ -1,1 +1,3 @@
 .python-version
+/app/model/model.h5
+.env
