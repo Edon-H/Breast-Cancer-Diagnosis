@@ -11,7 +11,7 @@ st.write("Upload a histopathology image to get a prediction.")
 API_URL = 'http://127.0.0.1:8000'
 
 # Upload the image (PNG)
-uploaded_file = st.file_uploader("📤 Upload a PNG, JPG or JPEG image", type="png")
+uploaded_file = st.file_uploader("📤 Upload a PNG image", type="png")
 
 if uploaded_file is not None:
 
