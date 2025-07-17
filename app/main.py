@@ -37,7 +37,7 @@ async def predict(file: UploadFile = File(...)):
 
         return {
             "predicted_class": predicted_class,
-            "confidence": probability
+            "probability": probability
         }
 
     except Exception as e:
