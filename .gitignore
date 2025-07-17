@@ -1,4 +1,4 @@
 .python-version
-/app/model/model.h5
+/app/model/model.keras
 .env
 raw_data/
