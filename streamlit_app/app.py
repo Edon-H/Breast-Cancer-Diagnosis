@@ -2,29 +2,40 @@ import streamlit as st
 from PIL import Image
 import requests
 
-st.set_page_config(page_title= 'Breast Cancer Diagnosis')
+st.set_page_config(page_title='Breast Cancer Diagnosis')
 
 st.title("🧠 Breast Cancer Predictor")
 st.write("Upload a histopathology image to get a prediction.")
 
-# Later we will create a .env file and store the API there for safety
+# We can later move this to a .env file
 API_URL = 'http://127.0.0.1:8000'
 
-# Upload the image, limited formats allowed
-uploaded_file = st.file_uploader("📤 Upload a PNG, JPG or JPEG image", type=["png", "jpg", "jpeg"])
+# Upload the image (PNG)
+uploaded_file = st.file_uploader("📤 Upload a PNG, JPG or JPEG image", type="png")
 
-if uploaded_file:
-    # Shows the uploaded image
+if uploaded_file is not None:
+
+    # Display the uploaded image
     image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.image(image, caption="🖼 Uploaded Image", use_container_width=True)
+    st.success("✅ Image uploaded successfully!")
 
-    st.write("✅ Image uploaded successfully!")
+    # Add a button to trigger prediction
+    if st.button("🔍 Predict"):
+        st.info("📡 Sending request to the API...")
 
-    # Gets the API request
-    response = requests.get(API_URL)
+        try:
+            # Send POST request to FastAPI
+            files = {"file": (uploaded_file.name, uploaded_file.getvalue(), uploaded_file.type)}
+            response = requests.post(f"{API_URL}/predict", files=files)
 
-    if response.status_code == 200:
-        result = response.json()
-        st.success(result)
-    else:
-        st.error('Check API!')
+            # Handles the response
+            if response.status_code == 200:
+                result = response.json()
+                st.success(f"🧪 Prediction: **{result['predicted_class']}**")
+                st.write(f"🔢 Probability: **{result['confidence']}**")
+            else:
+                st.error(f"❌ API returned an error: {response.status_code}")
+
+        except Exception as e:
+            st.error(f"🚨 Failed to connect to API: {e}")

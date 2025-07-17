@@ -2,3 +2,4 @@
 /app/model/model.keras
 .env
 raw_data/
+app/__pycache__/
