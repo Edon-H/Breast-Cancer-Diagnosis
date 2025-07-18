@@ -33,7 +33,7 @@ if uploaded_file is not None:
             if response.status_code == 200:
                 result = response.json()
                 st.success(f"🧪 Prediction: **{result['predicted_class']}**")
-                st.write(f"🔢 Probability: **{result['confidence']}**")
+                st.write(f"🔢 Probability: **{result['probability']}**")
             else:
                 st.error(f"❌ API returned an error: {response.status_code}")
 
