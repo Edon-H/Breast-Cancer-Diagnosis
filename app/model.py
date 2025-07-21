@@ -1,7 +1,7 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 
-IMG_SIZE = 224  # can also be set in config
+IMG_SIZE = 256
 
 def build_model():
     """
@@ -20,8 +20,8 @@ def build_model():
         Flatten(),
         Dense(128, activation='relu'),
         Dropout(0.5),
-        Dense(1, activation='sigmoid')
+        Dense(2, activation='softmax')
     ])
 
-    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return model
