@@ -5,5 +5,5 @@ python-dotenv==1.1.1
 Requests==2.32.4
 scikit_learn==1.7.1
 streamlit==1.46.1
-tensorflow==2.19.0
+tensorflow==2.13.0
 tqdm==4.67.1
