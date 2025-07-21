@@ -1,9 +1,7 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
-from tensorflow.keras.metrics import Precision, Recall
-from tensorflow.keras.optimizers import Adam
 
-IMG_SIZE = 256  # same as preprocessing
+IMG_SIZE = 256
 
 def build_model():
     """
@@ -22,8 +20,8 @@ def build_model():
         Flatten(),
         Dense(128, activation='relu'),
         Dropout(0.5),
-        Dense(2, activation='softmax') #  changed it to 2 outputs and softmax
+        Dense(2, activation='softmax')
     ])
 
-    model.compile(optimizer=Adam(learning_rate = 1e-4), loss='categorical_crossentropy', metrics=['accuracy', 'precision']) # changed loss to 'categorical_crossentropy'
+    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return model
