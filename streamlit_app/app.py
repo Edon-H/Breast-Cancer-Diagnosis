@@ -1,14 +1,17 @@
 import streamlit as st
 from PIL import Image
 import requests
+import os
+from dotenv import load_dotenv
 
 st.set_page_config(page_title='Breast Cancer Diagnosis')
 
 st.title("🧠 Breast Cancer Predictor")
 st.write("Upload a histopathology image to get a prediction.")
 
-# We can later move this to a .env file
-API_URL = 'http://127.0.0.1:8000'
+# Loads the API URL from the .env file
+load_dotenv()
+API_URL = os.getenv("API_URL")
 
 # Upload the image (PNG)
 uploaded_file = st.file_uploader("📤 Upload a PNG image", type="png")
