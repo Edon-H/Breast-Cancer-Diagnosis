@@ -4,14 +4,11 @@ FROM python:3.10
 # Set working directory
 WORKDIR /app
 
-# Copy entire app directory including model
+# Copy entire app directory including model and requirements
 COPY app ./app
 
-# Copy requirements.txt
-COPY requirements.txt .
-
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install only FastAPI-related dependencies
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Expose Cloud Run required port
 EXPOSE 8080
