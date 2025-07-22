@@ -3,3 +3,4 @@
 .env
 raw_data/
 app/__pycache__/
+.devcontainer/
