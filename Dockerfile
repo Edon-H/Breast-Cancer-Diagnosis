@@ -4,9 +4,10 @@ FROM python:3.10
 # Set working directory
 WORKDIR /app
 
-# Copy entire app directory including model and requirements
+# Copy entire app directory to the container
 COPY app ./app
 
+COPY app/requirements.txt ./requirements.txt
 # Install only FastAPI-related dependencies
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
