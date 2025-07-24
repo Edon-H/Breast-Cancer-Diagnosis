@@ -4,8 +4,10 @@ FROM python:3.10-slim
 # Set working directory in docker container
 WORKDIR /app
 
-# Copy everything from back_end/ into the container's /app/
-COPY . .
+# Copy the FastAPI application files into the container
+COPY main.py .
+COPY model/ ./model/
+COPY requirements.txt .
 
 # Install backend dependencies
 RUN pip install --no-cache-dir -r requirements.txt

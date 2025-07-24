@@ -6,7 +6,7 @@ from io import BytesIO
 
 app = FastAPI()
 
-model = load_model("app/model/model.keras")
+model = load_model("model/model.keras")
 IMG_SIZE = 256
 
 @app.get("/")
