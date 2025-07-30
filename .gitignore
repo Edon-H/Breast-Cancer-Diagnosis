@@ -5,3 +5,4 @@ raw_data/
 app/__pycache__/
 .devcontainer/
 streamlit_app/.env
+docker-compose.yml
