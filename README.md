@@ -39,7 +39,6 @@ The system consists of:
 gcloud auth login
 gcloud auth configure-docker
 
-
 # 💳 Link Billing to Your GCP Project
 gcloud beta billing accounts list
 
@@ -53,7 +52,6 @@ gcloud config set project YOUR_PROJECT_ID
 gcloud services enable run.googleapis.com
 gcloud services enable artifactregistry.googleapis.com
 gcloud services enable containerregistry.googleapis.com
-
 ```
 # 🐳 Build Docker Image
  First you can **test** it locally by creating a `docker-compose.yml` file:
@@ -83,12 +81,10 @@ services:
       - PORT=8501
       - API_URL=http://backend:8000
     command: streamlit run app.py --server.port 8501 --server.address=0.0.0.0
-
 ```
 ---
 Then run in terminal:
 ```bash
-
  docker-compose --env-file .env up --build
 ```
 
@@ -110,7 +106,6 @@ From `root` directory, push your image into Google Container Registry and deploy
 ```bash
 # 🚀 Push Docker Image to GCR
 docker push gcr.io/YOUR_PROJECT_ID/breast-cancer-backend
-
 
 # 🚀 Deploy to Google Cloud Run
 gcloud run deploy breast-cancer-backend \
