@@ -1,5 +1,5 @@
 
-# 🧬 Breast Cancer Diagnosis App
+<h2 class='sub-title'>🧬 Breast Cancer Diagnosis App </h2>
 
 This interactive web application enables users to upload histopathology images and receive an instant prediction on whether the sample is **benign** or **malignant**, using a deep learning model trained on histopathology image data.
 
@@ -17,8 +17,8 @@ Breast cancer is one of the most prevalent cancers in the world. Early detection
 |------------|--------------------------|
 | Frontend   | Streamlit                |
 | Backend    | FastAPI                  |
-| Model      | TensorFlow / Keras       |
-| Deployment | Docker & Cloud Run       |
+| Model      | TensorFlow / Keras (CNN, VGG16)|
+| Deployment | Docker & Cloud Cloud Run|
 | Storage    | Session-based / In-Memory |
 
 ---
@@ -26,17 +26,17 @@ Breast cancer is one of the most prevalent cancers in the world. Early detection
 ## 🔬 How It Works
 
 1. **Upload** a histopathology image (PNG format).
-2. The image is sent to a **FastAPI backend**.
-3. The backend preprocesses the image and runs inference using a trained **CNN model**.
-4. The prediction (Benign / Malignant) and confidence score are returned and displayed to the user.
-5. Prediction history is stored per session.
+2. The image is sent to a **FastAPI backend** hosted on Cloud Run.
+3. The backend preprocesses the image and runs inference using a trained **CNN/VGG16 model**.
+4. The prediction (Benign / Malignant) and confidence score are returned and displayed.
+5. Prediction history is stored in **memory** per **session** (Streamlit session state).
 
 ---
 
 ## 📊 Model Performance
 
-- Model: Custom CNN with 3 convolutional layers
-- Image Size: 256 x 256
+- Model: VGG16 (Transfer Learning) with 3 convolutional layers
+- Image Size: 128 x 128
 - Accuracy: **93.4%**
 - Loss: 0.17
 
@@ -54,16 +54,16 @@ Breast cancer is one of the most prevalent cancers in the world. Early detection
 
 You can also directly access the model's API:
 
-- **Root Endpoint:**  
-  `GET /`  
+- **Root Endpoint:**
+  `GET /`
   Returns a welcome message
 
-- **Predict Endpoint:**  
-  `POST /predict`  
+- **Predict Endpoint:**
+  `POST /predict`
   Accepts a PNG file and returns a prediction
 
-- **History (optional):**  
-  `GET /history`  
+- **History (optional):**
+  `GET /history`
   Returns all predictions from the current session
 
 Example API call (Python):
