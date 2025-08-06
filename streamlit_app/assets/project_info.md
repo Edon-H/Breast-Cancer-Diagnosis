@@ -17,9 +17,9 @@ Breast cancer is one of the most prevalent cancers in the world. Early detection
 |------------|--------------------------|
 | Frontend   | Streamlit                |
 | Backend    | FastAPI                  |
-| Model      | TensorFlow / Keras (CNN, VGG16)|
-| Deployment | Docker & Cloud Cloud Run|
-| Storage    | Session-based / In-Memory |
+| Model      | TensorFlow / Keras       |
+| Deployment | Docker & Google Cloud Run|
+| Storage    | Session-based / In-Memory|
 
 ---
 
@@ -43,27 +43,3 @@ Breast cancer is one of the most prevalent cancers in the world. Early detection
 - **Validation Loss:** **0.1938**
 
 ---
-
-## 🌐 Backend API
-
-You can also directly access the model's API:
-
-- **Root Endpoint:**
-  `GET /`
-  Returns a welcome message
-
-- **Predict Endpoint:**
-  `POST /predict`
-  Accepts a PNG file and returns a prediction
-
-- **History (optional):**
-  `GET /history`
-  Returns all predictions from the current session
-
-Example API call (Python):
-```python
-import requests
-
-with open("test_image.png", "rb") as f:
-    res = requests.post("http://localhost:8000/predict", files={"file": f})
-    print(res.json())
