@@ -11,7 +11,7 @@ session_logs: List[dict] = []
 app = FastAPI()
 
 model = load_model("model/model.keras")
-IMG_SIZE = 256
+IMG_SIZE = 128
 
 @app.get("/")
 def root():
@@ -31,7 +31,7 @@ async def predict(file: UploadFile = File(...)):
 
         predicted_class = "Malignant" if malignant_prob > benign_prob else "Benign"
         probability = round(max(benign_prob, malignant_prob), 4)
-        
+
         # Store in session log
         session_logs.append({
             "filename": file.filename,
