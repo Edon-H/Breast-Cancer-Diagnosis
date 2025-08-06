@@ -49,7 +49,7 @@ load_css()
 # GitHub link + info inside .stApp
 st.markdown("""
     <div class="stapp-github-container">
-        <a href="https://github.com/HarshvardhanRathore/your-repo" target="_blank" title="View on GitHub">
+        <a href="https://github.com/Edon-H/Breast-Cancer-Diagnosis" target="_blank" title="View on GitHub">
             <svg class="github-icon" xmlns="http://www.w3.org/2000/svg" fill="#8B004D" viewBox="0 0 24 24">
                 <path d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.29 3.438 9.777 8.205 11.387.6.111.82-.26.82-.577
                 0-.285-.011-1.04-.017-2.04-3.338.726-4.042-1.614-4.042-1.614
@@ -68,7 +68,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-   
+
 st.markdown(f"""
 <div class="background-lab-icons">
     <img src="data:image/png;base64,{dna_base64}" class="lab-icon float1" style="top: 5%; left: 5%; width: 150px;">
@@ -103,7 +103,7 @@ if st.session_state.uploaded_file is None:
 else:
     uploaded_file = st.session_state.uploaded_file
     image = Image.open(uploaded_file)
-    
+
     st.success("✅ Image uploaded successfully!")
     col01, col02 = st.columns([1, 1])
     with col01:
@@ -200,15 +200,27 @@ if st.session_state.get("show_project_info", False):
 
     st.markdown("<h3 style='text-align:center; color:#8B004D;'>Project Overview</h3>", unsafe_allow_html=True)
 
-  
-        #st.image("assets/project-image.png", use_container_width=True)  # Optional banner image
-        # Embed markdown content inside styled div
     st.markdown(f"<div class='project-description'>{md_content}</div>", unsafe_allow_html=True)
+
+    # Embed base64 images directly
+    cm_base64 = get_base64_image("assets/confusion_matrix.png")
+    tc_base64 = get_base64_image("assets/training_curve.png")
+
+    st.markdown(f"""
+    <div class='project-description' style='text-align:center; margin-top:2rem;'>
+        <h3 style='text-align:left; font-size:2.3rem; margin-top: 2.5rem; color:#8B004D;'>📈 Metrics Graphs</h3>
+            <img src='data:image/png;base64,{cm_base64}' style='width:90%; border-radius:10px;'>
+            <p style='color:#8B004D; font-style:italic;'>Confusion matrix showing true positives and negatives.</p>
+            <hr style='border: none; height: 1px; background: #8B004D; margin: 2rem auto; width: 60%;'>
+            <img src='data:image/png;base64,{tc_base64}' style='width:90%; border-radius:10px; margin-top:1rem;'>
+            <p style='color:#8B004D; font-style:italic;'>Training and validation accuracy over epochs.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 
 st.markdown("<div style='margin-top: 4rem;'></div>", unsafe_allow_html=True)
-       
+
 # Header
 col1, col2, col3 = st.columns([5, 3, 5])
 with col2:
@@ -226,13 +238,12 @@ if st.session_state.get("show_team", False):
     for idx, member in enumerate(team[3:]):
         with cols_bottom[1 + idx*2]:  # Place in 2nd and 4th columns
             st.markdown(render_member(member), unsafe_allow_html=True)
-        
+
 # Footer
 st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown("""
 <div class="footer">
     <p>🧠 Powered by <strong>Deep Learning</strong> & <strong>FastAPI</strong> | 💻 Built with <strong>Streamlit</strong></p>
-    <p>Made with ❤️ by <strong>Team BCD</strong> | <a href="https://github.com/HarshvardhanRathore/your-repo" target="_blank">GitHub Repository</a></p>
+    <p>Made with ❤️ by <strong>Le Wagon Students</strong> | <a href="https://github.com/Edon-H/Breast-Cancer-Diagnosis" target="_blank">GitHub Repository</a></p>
 </div>
 """, unsafe_allow_html=True)
-
